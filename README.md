@@ -1,3 +1,6 @@
 # new-younger-lottery
 
-计软智 2020 迎新晚会 抽奖大屏
+如果push不了：
+```
+git config --local http.postBuffer 524288000
+```
