@@ -31,3 +31,19 @@ body {
     color:white;
     position: absolute;
 }
+
+.result {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.3);
+}
+
+#text {
+    font-family: impact;
+    font-size: 130px;
+    color:#E426B1;
+}
