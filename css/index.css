@@ -5,7 +5,7 @@ body {
 
 #bg {
     position: fixed;
-    width: 100%;
+    width: 102%;
     opacity: 1;
     z-index: -100;
 }
@@ -39,8 +39,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 1s;
     transform: scale(0.3);
+    opacity: 0;
 }
+
+.result.zoom-in {
+    transform: scale(1.3);
+}
+
 
 #text {
     font-family: impact;

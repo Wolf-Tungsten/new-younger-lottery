@@ -17,14 +17,14 @@ $(function () {
         reverse: true,
         depth: 0.8,
         maxSpeed: 0.05,
-        textHeight: 20,
+        textHeight: 25,
         textColour: null,
         textFont: 'Impact,"Arial Black",sans-serif',
         noMouse: true,
         noSelect: true,
         initial: [-0.002, 0.0001],
         maxSpeed: 1,
-        zoom: 0.9,
+        zoom: 1,
         interval: 40,
         centreImage: 'img/logo.svg',
     });
@@ -32,21 +32,30 @@ $(function () {
         reverse: true,
         depth: 0.8,
         maxSpeed: 0.05,
-        textHeight: 20,
+        textHeight: 25,
         textColour: null,
         textFont: 'Impact,"Arial Black",sans-serif',
         noMouse: true,
         noSelect: true,
         initial: [0, 0],
         maxSpeed: 1,
-        zoom: 0.9,
+        zoom: 1,
         centreImage: 'img/logo.svg',
         animTiming: 'Linear'
     });
     let result = 0;
+    function fadeIn() {
+        $("#text").text(result);
+        $(".result").animate({ opacity: 1 }, 300);
+        $(".result").toggleClass("zoom-in", true);
+    }
+    function fadeOut(callback) {
+        $(".result").toggleClass("zoom-in", false);
+        $(".result").animate({ opacity: 0 }, 300, callback);
+    }
     function random() {
         result = Math.round(Math.random() * AMOUNT);
-        TagCanvas.TagToFront('cloud-result', {id: ''+result})
+        TagCanvas.TagToFront('cloud-result', { id: '' + result })
     }
     function speedUp() {
         let i = 0;
@@ -65,13 +74,19 @@ $(function () {
         $("#cloud").hide();
         $("#cloud-result").show();
         TagCanvas.SetSpeed('cloud', [-0.002, 0.0001]);
-        TagCanvas.TagToFront('cloud', { id: ''+result });   
+        TagCanvas.TagToFront('cloud', { id: '' + result });
+        setTimeout(()=>{
+            fadeIn();
+        }, 300);
+
     }
 
     function resume() {
-        $("#cloud").show();
-        $("#cloud-result").hide();
-        TagCanvas.SetSpeed('cloud', [-0.002, 0.0001]);
+        fadeOut(() => {
+            $("#cloud").show();
+            $("#cloud-result").hide();
+            TagCanvas.SetSpeed('cloud', [-0.002, 0.0001]);
+        });
     }
 
     $(document).keydown(function (event) {
